@@ -102,5 +102,5 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-[ci image]: https://github.com/bahmutov/trigger-circleci-pipeline/workflows/ci/badge.svg?branch=master
+[ci image]: https://github.com/bahmutov/trigger-circleci-pipeline/workflows/ci/badge.svg?branch=main
 [ci url]: https://github.com/bahmutov/trigger-circleci-pipeline/actions
