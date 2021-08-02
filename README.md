@@ -11,6 +11,14 @@ $ yarn add -D trigger-circleci-pipeline
 
 Set the CircleCI personal access token as an environment variable `CIRCLE_CI_API_TOKEN`
 
+### Using one-time install
+
+You can avoid adding this NPM package as a dev dependency and simply invoke it using `npx`
+
+```shell
+$ npx trigger-circleci-pipeline --org ... --project ...
+```
+
 ### Defaults
 
 Trigger the pipeline with all defaults for CircleCI organization and project:
