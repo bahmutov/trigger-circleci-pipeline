@@ -1,0 +1,39 @@
+{
+  "name": "trigger-circleci-pipeline",
+  "version": "1.0.0",
+  "description": "A little utility for triggering CircleCI pipelines for a given branch with fallback to the default branch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\""
+  },
+  "bin": {
+    "trigger-circleci-pipeline": "index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/trigger-circleci-pipeline.git"
+  },
+  "keywords": [
+    "circle",
+    "circleci",
+    "trigger",
+    "pipeline"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/trigger-circleci-pipeline/issues"
+  },
+  "homepage": "https://github.com/bahmutov/trigger-circleci-pipeline#readme",
+  "dependencies": {
+    "arg": "^5.0.0",
+    "debug": "^4.3.2",
+    "got": "^11.8.2"
+  },
+  "devDependencies": {
+    "prettier": "^2.3.2"
+  }
+}
