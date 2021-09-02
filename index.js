@@ -53,6 +53,11 @@ const triggerBranchWithFallback = () => {
   //   created_at: '2021-09-02T14:12:52.544Z',
   // })
 
+  console.log(
+    'Trigger CircleCI pipeline for %s/%s',
+    args['--org'],
+    args['--project'],
+  )
   return triggerPipeline(
     args['--org'],
     args['--project'],
