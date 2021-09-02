@@ -63,6 +63,7 @@ async function triggerPipeline(branchName, parameters) {
       .json()
 
     if (typeof result.number === 'number') {
+      console.log('CircleCI workflow number %d', result.number)
       console.log(result)
       return true
     } else {

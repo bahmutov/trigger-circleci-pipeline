@@ -19,6 +19,18 @@ You can avoid adding this NPM package as a dev dependency and simply invoke it u
 $ npx trigger-circleci-pipeline --org ... --project ...
 ```
 
+If the workflow is successfully triggered, it will print the workflow build number and any other information returned by the CircleCI API:
+
+```text
+CircleCI workflow number 1242
+{
+  number: 1242,
+  state: 'pending',
+  id: '0520fc28-2b1e-4ae6-ab0e-3a8a6d5639aa',
+  created_at: '2021-09-02T05:49:32.261Z'
+}
+```
+
 ### Defaults
 
 Trigger the pipeline with all defaults for CircleCI organization and project:
