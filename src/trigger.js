@@ -48,18 +48,18 @@ async function triggerPipeline(org, project, branchName, parameters) {
       .json()
 
     if (typeof result.number === 'number') {
-      console.log('CircleCI workflow number %d', result.number)
+      console.log('CircleCI pipeline number %d', result.number)
       console.log(result)
-      return true
+      return result
     } else {
       // did not trigger the pipeline
-      return false
+      return
     }
   } catch (err) {
     if (branchName && err.response.statusCode === 400) {
       // the branch name is invalid, try the default branch
       console.error('Branch not found, trying the default branch')
-      return false
+      return
     }
     // any other error - stop it
     throw err

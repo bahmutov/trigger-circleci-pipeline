@@ -1,5 +1,6 @@
 #! /bin/bash
 
+# trigger a new pipeline demo
 DEBUG=trigger-circleci-pipeline as-a circleci-user node . \
   --org bahmutov --project todomvc-tests-circleci \
   --branch delay-ajax \
