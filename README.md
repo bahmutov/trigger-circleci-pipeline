@@ -19,16 +19,19 @@ You can avoid adding this NPM package as a dev dependency and simply invoke it u
 $ npx trigger-circleci-pipeline --org ... --project ...
 ```
 
-If the workflow is successfully triggered, it will print the workflow build number and any other information returned by the CircleCI API:
+If the workflow is successfully triggered, it will print the workflow build number and any other information returned by the CircleCI API. It will also print workflow URLs
 
 ```text
-CircleCI workflow number 1242
+CircleCI pipeline number 125
 {
-  number: 1242,
+  number: 125,
   state: 'pending',
-  id: '0520fc28-2b1e-4ae6-ab0e-3a8a6d5639aa',
-  created_at: '2021-09-02T05:49:32.261Z'
+  id: '4b9b35c7-d292-4af4-a993-81006e006474',
+  created_at: '2021-09-02T14:40:42.447Z'
 }
+trigger pipeline on branch delay-ajax successfully
+1 workflow(s) for pipeline 4b9b35c7-d292-4af4-a993-81006e006474
+e2e https://app.circleci.com/pipelines/gh/bahmutov/todomvc-tests-circleci/125/workflows/b3877d79-6efc-4f5a-837a-faa4f31daff2
 ```
 
 ### Defaults

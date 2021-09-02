@@ -3,7 +3,7 @@
 
 const debug = require('debug')('trigger-circleci-pipeline')
 const { triggerPipeline } = require('./src/trigger')
-const { printPipeline } = require('./src/print-pipeline')
+const { printWorkflows } = require('./src/print-workflows')
 
 if (!process.env.CIRCLE_CI_API_TOKEN) {
   throw new Error('Missing CIRCLE_CI_API_TOKEN')
@@ -41,6 +41,8 @@ if (args['--parameters']) {
   })
 }
 debug('parsed parameters %o', parameters)
+
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 const triggerBranchWithFallback = () => {
   // test a specific pipeline ID
@@ -80,7 +82,9 @@ triggerBranchWithFallback()
       return
     }
 
-    // return printPipeline(triggeredResult.id)
+    // wait for N seconds for the workflows to be created
+    // on the CircleCI side, then ask for their URLs
+    return delay(5000).then(() => printWorkflows(triggeredResult.id))
   })
   .catch((err) => {
     console.error(err)
