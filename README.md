@@ -81,9 +81,13 @@ Run the [demo.sh](./demo.sh) to trigger a workflow build in the project [bahmuto
 $ as-a circleci-user ./demo.sh
 ```
 
+## Example projects
+
+- [bahmutov/todomvc-no-tests-vercel](https://github.com/bahmutov/todomvc-no-tests-vercel)
+
 ## More information
 
-See [CirlceCI pipeline API](https://circleci.com/docs/api/v2/#operation/triggerPipeline)
+See [CirlceCI pipeline API](https://circleci.com/docs/api/v2/#operation/triggerPipeline). Read the blog post [How to Keep Cypress Tests in Another Repo While Using CircleCI](https://glebbahmutov.com/blog/how-to-keep-cypress-tests-in-another-repo-with-circleci/).
 
 ## Small print
 
@@ -92,6 +96,7 @@ Author: Gleb Bahmutov &copy; 2021
 * [@bahmutov](https://twitter.com/bahmutov)
 * [glebbahmutov.com](https://glebbahmutov.com)
 * [blog](https://glebbahmutov.com/blog/)
+* [videos](https://www.youtube.com/glebbahmutov)
 
 License: MIT - do anything with the code, but don't blame me if it does not work.
 
