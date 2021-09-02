@@ -70,6 +70,14 @@ npx trigger-circleci-pipeline \
 
 Run this utility with the environment variable `DEBUG=trigger-circleci-pipeline` to see verbose log messages.
 
+## Demo
+
+Run the [demo.sh](./demo.sh) to trigger a workflow build in the project [bahmutov/todomvc-tests-circleci](https://github.com/bahmutov/todomvc-tests-circleci) with results at [CircleCI](https://app.circleci.com/pipelines/github/bahmutov/todomvc-tests-circleci). Using [as-a](https://github.com/bahmutov/as-a) is recommended.
+
+```shell
+$ as-a circleci-user ./demo.sh
+```
+
 ## More information
 
 See [CirlceCI pipeline API](https://circleci.com/docs/api/v2/#operation/triggerPipeline)

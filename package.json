@@ -11,7 +11,8 @@
     "trigger-circleci-pipeline": "index.js"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "src"
   ],
   "repository": {
     "type": "git",
