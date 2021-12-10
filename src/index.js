@@ -1,9 +1,8 @@
-#!/usr/bin/env node
 // @ts-check
 
 const debug = require('debug')('trigger-circleci-pipeline')
-const { triggerPipeline } = require('./src/trigger')
-const { printWorkflows } = require('./src/print-workflows')
+const { triggerPipeline } = require('./trigger')
+const { printWorkflows } = require('./print-workflows')
 
 if (!process.env.CIRCLE_CI_API_TOKEN) {
   throw new Error('Missing CIRCLE_CI_API_TOKEN')
@@ -95,3 +94,8 @@ triggerBranchWithFallback()
     console.error(err)
     process.exit(1)
   })
+
+module.exports = {
+  triggerPipelineWithFallback: triggerBranchWithFallback,
+  triggerPipeline,
+}

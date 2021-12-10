@@ -2,7 +2,7 @@
   "name": "trigger-circleci-pipeline",
   "version": "0.0.0-development",
   "description": "A little utility for triggering CircleCI pipelines for a given branch with fallback to the default branch",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\"",
     "semantic-release": "semantic-release"
@@ -12,7 +12,6 @@
   },
   "files": [
     "bin",
-    "index.js",
     "src"
   ],
   "repository": {
