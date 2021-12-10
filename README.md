@@ -87,7 +87,22 @@ $ as-a circleci-user ./demo.sh
 
 ## NPM module API
 
+### triggerPipeline
+
+```js
+const { triggerPipeline } = require('trigger-circleci-pipeline')
+triggerPipeline({
+  org: 'org name',
+  project: 'project name',
+  branchName: 'branch name', // optional
+  parameters, // object with pipeline parameters
+  circleApiToken,
+})
+```
+
 ### triggerPipelineWithFallback
+
+First tries to call with the branch, if that does not work, tries no branch name.
 
 ```js
 const { triggerPipelineWithFallback } = require('trigger-circleci-pipeline')

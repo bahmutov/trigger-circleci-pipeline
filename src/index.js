@@ -25,20 +25,19 @@ const triggerBranchWithFallback = (options = {}) => {
   debug('parameters %o', { org, project, branchName, parameters })
 
   debug('Trigger CircleCI pipeline for %s/%s', org, project)
-  return triggerPipeline(org, project, branchName, parameters).then(
-    (triggeredResult) => {
-      if (triggeredResult) {
-        if (branchName) {
-          console.log('trigger pipeline on branch %s successfully', branchName)
-        } else {
-          console.log('trigger pipeline successfully')
-        }
-        return triggeredResult
+  return triggerPipeline(options).then((triggeredResult) => {
+    if (triggeredResult) {
+      if (branchName) {
+        console.log('trigger pipeline on branch %s successfully', branchName)
+      } else {
+        console.log('trigger pipeline successfully')
       }
+      return triggeredResult
+    }
 
-      return triggerPipeline(org, project, null, parameters)
-    },
-  )
+    const optionsWithoutBranch = { ...options, branchName: null }
+    return triggerPipeline(optionsWithoutBranch)
+  })
 }
 
 module.exports = {

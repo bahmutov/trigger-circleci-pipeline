@@ -13,9 +13,17 @@ function getPipelineUrl(org, project) {
  * @returns undefined if could not trigger the pipeline,
  * or an object with new pipeline parameters on success
  */
-async function triggerPipeline(org, project, branchName, parameters) {
-  if (!process.env.CIRCLE_CI_API_TOKEN) {
-    throw new Error('Missing CIRCLE_CI_API_TOKEN')
+async function triggerPipeline(options = {}) {
+  const { org, project, branchName, parameters, circleApiToken } = options
+
+  if (!org) {
+    throw new Error('Missing org')
+  }
+  if (!project) {
+    throw new Error('Missing project')
+  }
+  if (!circleApiToken) {
+    throw new Error('Missing circleApiToken')
   }
 
   if (branchName) {
