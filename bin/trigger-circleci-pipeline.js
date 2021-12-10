@@ -2,7 +2,7 @@
 // @ts-check
 
 const debug = require('debug')('trigger-circleci-pipeline')
-const { triggerPipeline } = require('../src/trigger')
+const { triggerPipelineWithFallback } = require('../src/index')
 const { printWorkflows } = require('../src/print-workflows')
 
 if (!process.env.CIRCLE_CI_API_TOKEN) {
@@ -44,43 +44,19 @@ debug('parsed parameters %o', parameters)
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
-const triggerBranchWithFallback = () => {
-  // test a specific pipeline ID
-  // return Promise.resolve({
-  //   number: 122,
-  //   state: 'pending',
-  //   id: '23e09136-2269-4a1b-8fe7-8ff5ab52c9af',
-  //   created_at: '2021-09-02T14:12:52.544Z',
-  // })
+console.log(
+  'Trigger CircleCI pipeline for %s/%s',
+  args['--org'],
+  args['--project'],
+)
 
-  console.log(
-    'Trigger CircleCI pipeline for %s/%s',
-    args['--org'],
-    args['--project'],
-  )
-  return triggerPipeline(
-    args['--org'],
-    args['--project'],
-    args['--branch'],
-    parameters,
-  ).then((triggeredResult) => {
-    if (triggeredResult) {
-      if (args['--branch']) {
-        console.log(
-          'trigger pipeline on branch %s successfully',
-          args['--branch'],
-        )
-      } else {
-        console.log('trigger pipeline successfully')
-      }
-      return triggeredResult
-    }
-
-    return triggerPipeline(args['--org'], args['--project'], null, parameters)
-  })
-}
-
-triggerBranchWithFallback()
+triggerPipelineWithFallback({
+  org: args['--org'],
+  project: args['--project'],
+  branchName: args['--branch'],
+  parameters,
+  circleApiToken: process.env.CIRCLE_CI_API_TOKEN,
+})
   .then((triggeredResult) => {
     if (!triggeredResult) {
       // nothing to report, could not trigger the pipeline

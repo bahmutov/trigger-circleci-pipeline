@@ -85,6 +85,21 @@ $ as-a circleci-user ./demo.sh
 
 - [bahmutov/todomvc-no-tests-vercel](https://github.com/bahmutov/todomvc-no-tests-vercel)
 
+## NPM module API
+
+### triggerPipelineWithFallback
+
+```js
+const { triggerPipelineWithFallback } = require('trigger-circleci-pipeline')
+triggerPipelineWithFallback({
+  org: 'org name',
+  project: 'project name',
+  branchName: 'branch name', // optional
+  parameters, // object with pipeline parameters
+  circleApiToken,
+})
+```
+
 ## More information
 
 See [CirlceCI pipeline API](https://circleci.com/docs/api/v2/#operation/triggerPipeline). Read the blog post [How to Keep Cypress Tests in Another Repo While Using CircleCI](https://glebbahmutov.com/blog/how-to-keep-cypress-tests-in-another-repo-with-circleci/).
