@@ -8,9 +8,10 @@
     "semantic-release": "semantic-release"
   },
   "bin": {
-    "trigger-circleci-pipeline": "index.js"
+    "trigger-circleci-pipeline": "bin/trigger-circleci-pipeline.js"
   },
   "files": [
+    "bin",
     "index.js",
     "src"
   ],
