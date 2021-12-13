@@ -49,7 +49,7 @@ async function triggerPipeline(options = {}) {
       // @ts-ignore
       .post(pipelineUrl, {
         headers: {
-          'Circle-Token': process.env.CIRCLE_CI_API_TOKEN,
+          'Circle-Token': circleApiToken,
         },
         json,
       })
