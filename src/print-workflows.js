@@ -31,12 +31,13 @@ function getWebAppUrl(w) {
  * Reports CircleCI pipeline workflows
  * @see https://circleci.com/docs/api/v2/#operation/listWorkflowsByPipelineId
  */
-async function printWorkflows(pipelineId) {
+async function printWorkflows(pipelineId, circleCiApiToken) {
   if (typeof pipelineId !== 'string') {
     throw new Error('pipelineId must be a string')
   }
 
-  if (!process.env.CIRCLE_CI_API_TOKEN) {
+  circleCiApiToken = circleCiApiToken || process.env.CIRCLE_CI_API_TOKEN
+  if (!circleCiApiToken) {
     throw new Error('Missing CIRCLE_CI_API_TOKEN')
   }
 
@@ -48,7 +49,7 @@ async function printWorkflows(pipelineId) {
       // @ts-ignore
       .get(url, {
         headers: {
-          'Circle-Token': process.env.CIRCLE_CI_API_TOKEN,
+          'Circle-Token': circleCiApiToken,
         },
       })
       .json()

@@ -125,6 +125,12 @@ printWorkflows(id)
 // prints the number of workflows, their statuses and URLs
 ```
 
+It expects the CircleCI API token as env variable `CIRCLE_CI_API_TOKEN` or you can pass it as the second argument
+
+```js
+printWorkflows(id, circleCiAPIToken)
+```
+
 ## More information
 
 See [CirlceCI pipeline API](https://circleci.com/docs/api/v2/#operation/triggerPipeline). Read the blog post [How to Keep Cypress Tests in Another Repo While Using CircleCI](https://glebbahmutov.com/blog/how-to-keep-cypress-tests-in-another-repo-with-circleci/).
