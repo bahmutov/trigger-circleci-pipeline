@@ -2,8 +2,9 @@
 
 const debug = require('debug')('trigger-circleci-pipeline')
 const { triggerPipeline } = require('./trigger')
+const { printWorkflows } = require('./print-workflows')
 
-const triggerBranchWithFallback = (options = {}) => {
+const triggerPipelineWithFallback = (options = {}) => {
   // test a specific pipeline ID
   // return Promise.resolve({
   //   number: 122,
@@ -41,6 +42,7 @@ const triggerBranchWithFallback = (options = {}) => {
 }
 
 module.exports = {
-  triggerPipelineWithFallback: triggerBranchWithFallback,
+  triggerPipelineWithFallback,
   triggerPipeline,
+  printWorkflows,
 }

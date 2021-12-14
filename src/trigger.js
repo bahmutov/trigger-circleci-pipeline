@@ -45,6 +45,8 @@ async function triggerPipeline(options = {}) {
   }
 
   try {
+    // result of triggering a pipeline if successful
+    // "id", "number", "state", "created_at"
     const result = await got
       // @ts-ignore
       .post(pipelineUrl, {

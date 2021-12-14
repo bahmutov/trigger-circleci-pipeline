@@ -61,7 +61,7 @@ async function printWorkflows(pipelineId) {
 
     console.log('%d workflow(s) for pipeline %s', items.length, pipelineId)
     items.forEach((w) => {
-      console.log('%s %s', w.name, getWebAppUrl(w))
+      console.log('%s %s %s', w.name, w.status, getWebAppUrl(w))
     })
   } catch (err) {
     if (err.response.statusCode === 400) {
@@ -74,3 +74,12 @@ async function printWorkflows(pipelineId) {
 }
 
 module.exports = { printWorkflows }
+
+// @ts-ignore
+if (!module.parent) {
+  const pipelineId = process.argv[2]
+  if (!pipelineId) {
+    throw new Error('Missing pipelineId')
+  }
+  printWorkflows(pipelineId)
+}
