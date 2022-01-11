@@ -12,3 +12,9 @@ test('converts numbers', (t) => {
   const parsed = parseParams('foo=bar,baz=5')
   t.deepEqual(parsed, { foo: 'bar', baz: 5 })
 })
+
+test('handles empty strings', (t) => {
+  t.plan(1)
+  const parsed = parseParams('foo=bar,baz=')
+  t.deepEqual(parsed, { foo: 'bar', baz: '' })
+})

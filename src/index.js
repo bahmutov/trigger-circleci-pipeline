@@ -42,6 +42,10 @@ const triggerPipelineWithFallback = (options = {}) => {
 }
 
 function maybeNumber(s) {
+  if (s === '') {
+    return ''
+  }
+
   const n = Number(s)
   if (isNaN(n)) {
     return s
