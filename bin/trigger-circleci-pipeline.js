@@ -2,7 +2,7 @@
 // @ts-check
 
 const debug = require('debug')('trigger-circleci-pipeline')
-const { triggerPipelineWithFallback } = require('../src/index')
+const { triggerPipelineWithFallback, parseParams } = require('../src/index')
 const { printWorkflows } = require('../src/print-workflows')
 
 if (!process.env.CIRCLE_CI_API_TOKEN) {
@@ -32,14 +32,7 @@ if (!args['--project']) {
 }
 
 // assume --parameters is a comma-separated string
-const parameters = {}
-if (args['--parameters']) {
-  const parts = args['--parameters'].split(',').map((s) => s.trim())
-  parts.forEach((part) => {
-    const [key, value] = part.split('=')
-    parameters[key] = value
-  })
-}
+const parameters = parseParams(args['--parameters'])
 debug('parsed parameters %o', parameters)
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))

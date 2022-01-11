@@ -10,6 +10,9 @@ jobs:
       - name: NPM install
         uses: bahmutov/npm-install@v1
 
+      - name: Run tests 🧪
+        run: npm test
+
       - name: Semantic Release 🚀
         uses: cycjimmy/semantic-release-action@v2
         with:

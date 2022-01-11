@@ -41,8 +41,30 @@ const triggerPipelineWithFallback = (options = {}) => {
   })
 }
 
+function maybeNumber(s) {
+  const n = Number(s)
+  if (isNaN(n)) {
+    return s
+  }
+  return n
+}
+
+function parseParams(s) {
+  const parameters = {}
+  if (!s) {
+    return parameters
+  }
+  const parts = s.split(',').map((s) => s.trim())
+  parts.forEach((part) => {
+    const [key, value] = part.split('=')
+    parameters[key] = maybeNumber(value)
+  })
+  return parameters
+}
+
 module.exports = {
   triggerPipelineWithFallback,
   triggerPipeline,
   printWorkflows,
+  parseParams,
 }

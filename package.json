@@ -4,7 +4,7 @@
   "description": "A little utility for triggering CircleCI pipelines for a given branch with fallback to the default branch",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\"",
+    "test": "ava",
     "semantic-release": "semantic-release"
   },
   "bin": {
@@ -36,6 +36,7 @@
     "got": "^11.8.2"
   },
   "devDependencies": {
+    "ava": "^4.0.1",
     "prettier": "^2.3.2",
     "semantic-release": "^17.4.4"
   }
