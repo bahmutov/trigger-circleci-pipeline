@@ -1,4 +1,5 @@
 # trigger-circleci-pipeline [![ci status][ci image]][ci url]
+
 > A little utility for triggering CircleCI pipelines for a given branch with fallback to the default branch
 
 ## Install and use
@@ -84,6 +85,7 @@ $ as-a circleci-user ./demo.sh
 ## Example projects
 
 - [bahmutov/todomvc-no-tests-vercel](https://github.com/bahmutov/todomvc-no-tests-vercel)
+- [test-todomvc-using-app-actions](https://github.com/bahmutov/test-todomvc-using-app-actions) and read [How To Tag And Run End-to-End Tests](https://glebbahmutov.com/blog/tag-tests/)
 
 ## NPM module API
 
@@ -120,7 +122,7 @@ triggerPipelineWithFallback({
 Once you have a pipeline ID, you can print its workflows
 
 ```js
-const {printWorkflows} = require('trigger-circleci-pipeline')
+const { printWorkflows } = require('trigger-circleci-pipeline')
 printWorkflows(id)
 // prints the number of workflows, their statuses and URLs
 ```
@@ -139,10 +141,10 @@ See [CirlceCI pipeline API](https://circleci.com/docs/api/v2/#operation/triggerP
 
 Author: Gleb Bahmutov &copy; 2021
 
-* [@bahmutov](https://twitter.com/bahmutov)
-* [glebbahmutov.com](https://glebbahmutov.com)
-* [blog](https://glebbahmutov.com/blog/)
-* [videos](https://www.youtube.com/glebbahmutov)
+- [@bahmutov](https://twitter.com/bahmutov)
+- [glebbahmutov.com](https://glebbahmutov.com)
+- [blog](https://glebbahmutov.com/blog/)
+- [videos](https://www.youtube.com/glebbahmutov)
 
 License: MIT - do anything with the code, but don't blame me if it does not work.
 
