@@ -9,6 +9,8 @@ if (!process.env.CIRCLE_CI_API_TOKEN) {
   throw new Error('Missing CIRCLE_CI_API_TOKEN')
 }
 
+debug('command line args %o', process.argv)
+
 const arg = require('arg')
 const args = arg({
   '--org': String, // CircleCI organization

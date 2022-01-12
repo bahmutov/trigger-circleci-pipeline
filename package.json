@@ -31,7 +31,7 @@
   },
   "homepage": "https://github.com/bahmutov/trigger-circleci-pipeline#readme",
   "dependencies": {
-    "arg": "^5.0.0",
+    "arg": "^5.0.1",
     "debug": "^4.3.2",
     "got": "^11.8.2"
   },
