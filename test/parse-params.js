@@ -30,3 +30,15 @@ test('handles parameters with quotes', (t) => {
   const parsed = parseParams('foo=bar,baz="42 20",name=John')
   t.deepEqual(parsed, { foo: 'bar', baz: '42 20', name: 'John' })
 })
+
+test('handles parameters with @', (t) => {
+  t.plan(1)
+  const parsed = parseParams('GREP_TAGS=",@editing,@item",MACHINES=1')
+  t.deepEqual(parsed, { GREP_TAGS: ',@editing,@item', MACHINES: 1 })
+})
+
+test('handles spaces', (t) => {
+  t.plan(1)
+  const parsed = parseParams('GREP_TAGS=",@editing,@item",  MACHINES = 1')
+  t.deepEqual(parsed, { GREP_TAGS: ',@editing,@item', MACHINES: 1 })
+})

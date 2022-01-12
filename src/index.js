@@ -65,7 +65,7 @@ function parseParams(s) {
   for (let i = 0; i < s.length; i++) {
     const c = s[i]
     if (c === ',' && !inQuotes) {
-      parameters[key] = maybeNumber(value)
+      parameters[key.trim()] = maybeNumber(value)
       key = ''
       value = ''
     } else if (c === '=') {
@@ -79,7 +79,7 @@ function parseParams(s) {
 
     // grab the last key/value pair
     if (i === s.length - 1) {
-      parameters[key] = maybeNumber(value)
+      parameters[key.trim()] = maybeNumber(value)
     }
   }
 
