@@ -18,3 +18,15 @@ test('handles empty strings', (t) => {
   const parsed = parseParams('foo=bar,baz=')
   t.deepEqual(parsed, { foo: 'bar', baz: '' })
 })
+
+test('handles parameters with commas in quotes', (t) => {
+  t.plan(1)
+  const parsed = parseParams('foo=bar,baz="qux,quux",name=John')
+  t.deepEqual(parsed, { foo: 'bar', baz: 'qux,quux', name: 'John' })
+})
+
+test('handles parameters with quotes', (t) => {
+  t.plan(1)
+  const parsed = parseParams('foo=bar,baz="42 20",name=John')
+  t.deepEqual(parsed, { foo: 'bar', baz: '42 20', name: 'John' })
+})

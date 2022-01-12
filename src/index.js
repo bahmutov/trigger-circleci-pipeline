@@ -48,7 +48,7 @@ function maybeNumber(s) {
 
   const n = Number(s)
   if (isNaN(n)) {
-    return s
+    return s.trim()
   }
   return n
 }
@@ -58,11 +58,31 @@ function parseParams(s) {
   if (!s) {
     return parameters
   }
-  const parts = s.split(',').map((s) => s.trim())
-  parts.forEach((part) => {
-    const [key, value] = part.split('=')
-    parameters[key] = maybeNumber(value)
-  })
+
+  let key = ''
+  let value = ''
+  let inQuotes = false
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i]
+    if (c === ',' && !inQuotes) {
+      parameters[key] = maybeNumber(value)
+      key = ''
+      value = ''
+    } else if (c === '=') {
+      key = value
+      value = ''
+    } else if (c === '"') {
+      inQuotes = !inQuotes
+    } else {
+      value += c
+    }
+
+    // grab the last key/value pair
+    if (i === s.length - 1) {
+      parameters[key] = maybeNumber(value)
+    }
+  }
+
   return parameters
 }
 
