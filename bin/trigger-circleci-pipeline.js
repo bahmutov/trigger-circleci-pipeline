@@ -15,6 +15,7 @@ const args = arg({
   '--project': String, // CircleCI project
   '--branch': String, // [optional] pipeline branch name
   '--parameters': String, // [optional] pipeline parameters as a string
+  '--dry': Boolean, // [optional] dry run, do not trigger the pipeline
 
   // aliases
   '-o': '--org',
@@ -42,6 +43,11 @@ console.log(
   args['--org'],
   args['--project'],
 )
+
+if (args['--dry']) {
+  console.log('Dry run, not triggering the pipeline')
+  process.exit(0)
+}
 
 triggerPipelineWithFallback({
   org: args['--org'],
