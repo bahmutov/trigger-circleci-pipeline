@@ -25,6 +25,23 @@ test('handles parameters with commas in quotes', (t) => {
   t.deepEqual(parsed, { foo: 'bar', baz: 'qux,quux', name: 'John' })
 })
 
+test('handles parameters with quotes at the end', (t) => {
+  t.plan(1)
+  const parsed = parseParams('foo=bar,baz="qux quux"')
+  t.deepEqual(parsed, { foo: 'bar', baz: 'qux quux' })
+})
+
+test('handles multiple parameters with quotes', (t) => {
+  t.plan(1)
+  const parsed = parseParams('foo=bar,baz="qux,quux",name=John,last="one two"')
+  t.deepEqual(parsed, {
+    foo: 'bar',
+    baz: 'qux,quux',
+    name: 'John',
+    last: 'one two',
+  })
+})
+
 test('handles parameters with quotes', (t) => {
   t.plan(1)
   const parsed = parseParams('foo=bar,baz="42 20",name=John')
