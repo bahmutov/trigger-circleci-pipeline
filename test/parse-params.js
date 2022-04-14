@@ -13,6 +13,12 @@ test('converts numbers', (t) => {
   t.deepEqual(parsed, { foo: 'bar', baz: 5 })
 })
 
+test('converts booleans', (t) => {
+  t.plan(1)
+  const parsed = parseParams('foo=true,baz=false')
+  t.deepEqual(parsed, { foo: true, baz: false })
+})
+
 test('handles empty strings', (t) => {
   t.plan(1)
   const parsed = parseParams('foo=bar,baz=')

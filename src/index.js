@@ -41,9 +41,17 @@ const triggerPipelineWithFallback = (options = {}) => {
   })
 }
 
-function maybeNumber(s) {
+function maybeConvert(s) {
   if (s === '') {
     return ''
+  }
+
+  if (s === 'true') {
+    return true
+  }
+
+  if (s === 'false') {
+    return false
   }
 
   const n = Number(s)
@@ -65,7 +73,7 @@ function parseParams(s) {
   for (let i = 0; i < s.length; i++) {
     const c = s[i]
     if (c === ',' && !inQuotes) {
-      parameters[key.trim()] = maybeNumber(value)
+      parameters[key.trim()] = maybeConvert(value)
       key = ''
       value = ''
     } else if (c === '=') {
@@ -79,7 +87,7 @@ function parseParams(s) {
 
     // grab the last key/value pair
     if (i === s.length - 1) {
-      parameters[key.trim()] = maybeNumber(value)
+      parameters[key.trim()] = maybeConvert(value)
     }
   }
 

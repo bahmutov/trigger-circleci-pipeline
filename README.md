@@ -70,6 +70,14 @@ npx trigger-circleci-pipeline \
   --parameters TEST_BRANCH=feature-x,TEST_URL=https://test.com/feature-x
 ```
 
+Numbers and booleans are automatically converted, for example
+
+```
+--parameters NAME=Joe,AGE=21,INTERN=false
+# will be sent as
+{ NAME: "Joe", AGE: 21, INTERN:false }
+```
+
 ## Debugging
 
 Run this utility with the environment variable `DEBUG=trigger-circleci-pipeline` to see verbose log messages.
