@@ -62,7 +62,8 @@ async function printWorkflows(pipelineId, circleCiApiToken) {
 
     console.log('%d workflow(s) for pipeline %s', items.length, pipelineId)
     items.forEach((w) => {
-      console.log('%s %s %s', w.name, w.status, getWebAppUrl(w))
+      const url = getWebAppUrl(w)
+      console.log('%s %s %s', w.name, w.status, url)
     })
   } catch (err) {
     if (err.response.statusCode === 400) {

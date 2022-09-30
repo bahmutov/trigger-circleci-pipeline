@@ -23,6 +23,13 @@ jobs:
       - name: Use the set output variables
         run: echo Test1 variable is ${{ steps.var1.outputs.test1 }}
 
+      - name: Set output test2 variable
+        run: node ./test2/output-variable
+        id: var2
+
+      - name: Use the set output variables test2
+        run: echo Test2 variable is ${{ steps.var2.outputs.test2 }}
+
       - name: Semantic Release 🚀
         uses: cycjimmy/semantic-release-action@v2
         with:
