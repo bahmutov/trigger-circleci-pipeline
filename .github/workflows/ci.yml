@@ -5,13 +5,23 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: NPM install
         uses: bahmutov/npm-install@v1
 
       - name: Run tests 🧪
         run: npm test
+
+      # check how the code can output something when running
+      # using GitHub Actions
+      # https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+      - name: Set output test1 variable
+        run: echo ::set-output name=test1::hello
+        id: var1
+
+      - name: Use the set output variables
+        run: echo Test1 variable is ${{ steps.var1.outputs.test1 }}
 
       - name: Semantic Release 🚀
         uses: cycjimmy/semantic-release-action@v2
