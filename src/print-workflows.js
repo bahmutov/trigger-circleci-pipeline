@@ -1,6 +1,10 @@
 // @ts-check
 const got = require('got')
 const debug = require('debug')('trigger-circleci-pipeline')
+const { writeFileSync } = require('fs')
+
+const isGitHubActions = Boolean(process.env.CI && process.env.GITHUB_ACTION)
+debug('running on GitHub Actions?', isGitHubActions)
 
 function getUrl(pipelineId) {
   const pipelineUrl = `https://circleci.com/api/v2/pipeline/${pipelineId}/workflow`
@@ -62,7 +66,20 @@ async function printWorkflows(pipelineId, circleCiApiToken) {
 
     console.log('%d workflow(s) for pipeline %s', items.length, pipelineId)
     items.forEach((w) => {
-      console.log('%s %s %s', w.name, w.status, getWebAppUrl(w))
+      const url = getWebAppUrl(w)
+      console.log('%s %s %s', w.name, w.status, url)
+
+      if (isGitHubActions && items.length === 1) {
+        // https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+        debug('setting the single workflow as GitHub Actions step output')
+        console.log(`::set-output name=CircleCIWorkflowUrl::${url}`)
+        if (process.env.GITHUB_STEP_SUMMARY) {
+          const summary = `CircleCI workflow URL: ${url}\n`
+          writeFileSync(process.env.GITHUB_STEP_SUMMARY, summary, {
+            flag: 'a+',
+          })
+        }
+      }
     })
   } catch (err) {
     if (err.response.statusCode === 400) {
