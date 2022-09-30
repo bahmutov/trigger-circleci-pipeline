@@ -98,6 +98,10 @@ When running this utility on GitHub Actions, if there is a single CircleCI workf
   run: echo "URL is ${{ steps.trigger.output.CircleCIWorkflowUrl }}"
 ```
 
+When running from Github Actions the single CircleCI workflow URL is added to the job's summary
+
+![GitHub Actions showing the triggered Workflow URL](./images/workflow-url.png)
+
 ## Demo
 
 Run the [demo.sh](./demo.sh) to trigger a workflow build in the project [bahmutov/todomvc-tests-circleci](https://github.com/bahmutov/todomvc-tests-circleci) with results at [CircleCI](https://app.circleci.com/pipelines/github/bahmutov/todomvc-tests-circleci). Using [as-a](https://github.com/bahmutov/as-a) is recommended.
