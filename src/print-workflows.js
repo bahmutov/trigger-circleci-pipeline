@@ -69,12 +69,15 @@ async function printWorkflows(pipelineId, circleCiApiToken) {
       const url = getWebAppUrl(w)
       console.log('%s %s %s', w.name, w.status, url)
 
-      if (isGitHubActions && items.length === 1) {
-        // https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
-        debug('setting the single workflow as GitHub Actions step output')
-        console.log(`::set-output name=CircleCIWorkflowUrl::${url}`)
+      if (isGitHubActions) {
+        if (items.length === 1) {
+          // https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+          debug('setting the single workflow as GitHub Actions step output')
+          console.log(`::set-output name=CircleCIWorkflowUrl::${url}`)
+        }
+
         if (process.env.GITHUB_STEP_SUMMARY) {
-          const summary = `CircleCI workflow URL: ${url}\n`
+          const summary = `CircleCI workflow ${w.name} URL: ${url}\n`
           writeFileSync(process.env.GITHUB_STEP_SUMMARY, summary, {
             flag: 'a+',
           })
