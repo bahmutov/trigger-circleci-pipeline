@@ -2,6 +2,7 @@
 const got = require('got')
 const debug = require('debug')('trigger-circleci-pipeline')
 const { writeFileSync } = require('fs')
+const ghCore = require('@actions/core')
 
 const isGitHubActions = Boolean(process.env.CI && process.env.GITHUB_ACTION)
 debug('running on GitHub Actions?', isGitHubActions)
@@ -73,7 +74,7 @@ async function printWorkflows(pipelineId, circleCiApiToken) {
         if (items.length === 1) {
           // https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
           debug('setting the single workflow as GitHub Actions step output')
-          console.log(`::set-output name=CircleCIWorkflowUrl::${url}`)
+          ghCore.setOutput('CircleCIWorkflowUrl', url)
         }
 
         if (process.env.GITHUB_STEP_SUMMARY) {

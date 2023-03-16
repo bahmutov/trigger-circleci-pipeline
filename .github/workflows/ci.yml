@@ -31,7 +31,8 @@ jobs:
         run: echo Test2 variable is ${{ steps.var2.outputs.test2 }}
 
       - name: Semantic Release 🚀
-        uses: cycjimmy/semantic-release-action@v2
+        if: github.ref == 'refs/heads/main'
+        uses: cycjimmy/semantic-release-action@v3
         with:
           branches: main
         env:
